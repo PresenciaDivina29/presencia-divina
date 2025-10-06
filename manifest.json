@@ -1,0 +1,18 @@
+{
+  "name": "Presencia Divina",
+  "short_name": "Presencia Divina",
+  "description": "Tu encuentro diario con Dios",
+  "start_url": "./presencia-divina.html",
+  "display": "standalone",
+  "background_color": "#9333ea",
+  "theme_color": "#9333ea",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%239333ea' width='512' height='512'/><text y='400' font-size='400' fill='white' text-anchor='middle' x='256'>✝</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

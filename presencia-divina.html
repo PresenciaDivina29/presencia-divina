@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tu encuentro diario con Dios. Devocionales, oración y crecimiento espiritual.">
+    <meta name="theme-color" content="#9333ea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Presencia Divina">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✝️</text></svg>">
+    <title>Presencia Divina - Tu Encuentro Diario con Dios</title>
+    <style>
+        :root {
+            --primary: #9333ea;
+            --secondary: #c084fc;
+            --accent: #fbbf24;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary: #a855f7;
+            --secondary: #c084fc;
+            --accent: #fbbf24;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+        }
+
+        [data-theme="sepia"] {
+            --primary: #92400e;
+            --secondary: #b45309;
+            --accent: #f59e0b;
+            --bg-main: #fef3c7;
+            --bg-card: #fef9e7;
+            --text-primary: #451a03;
+            --text-secondary: #78350f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: var(--bg-main);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 20px;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .header-subtitle {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .theme-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            background: var(--bg-card);
+            border-bottom: 2px solid var(--primary);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px 10px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s;
+            white-space: nowrap;
+            min-width: 80px;
+        }
+
+        .nav-tab.active {
+            color: var(--primary);
+            background: rgba(147, 51, 234, 0.1);
+            font-weight: bold;
+        }
+
+        /* Content Sections */
+        .section {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.3s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .verse-box {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(192, 132, 252, 0.1));
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .verse-ref {
+            text-align: right;
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-emergency {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            width: 100%;
+            padding: 20px;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-group .btn {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* Categories */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .category-btn {
+            padding: 15px;
+            background: var(--bg-card);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+
+        .category-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Prayer Journal */
+        .prayer-item {
+            background: var(--bg-card);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .prayer-item.answered {
+            border-left-color: #10b981;
+            opacity: 0.7;
+        }
+
+        .prayer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .prayer-date {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+        }
+
+        /* Input */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1em;
+        }
+
+        .input-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Challenge Progress */
+        .challenge-card {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            background: rgba(147, 51, 234, 0.2);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 480px;
+            width: 100%;
+            background: var(--bg-card);
+            border-top: 1px solid var(--primary);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .bottom-nav-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px 12px;
+            font-size: 0.8em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.3s;
+        }
+
+        .bottom-nav-btn.active {
+            color: var(--primary);
+        }
+
+        .bottom-nav-btn span {
+            font-size: 1.5em;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 400px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .badge-gold {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #451a03;
+        }
+
+        .badge-silver {
+            background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+            color: #1f2937;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .celebration {
+            animation: celebrate 0.6s ease;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .spinner {
+            border: 3px solid rgba(147, 51, 234, 0.3);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .content-text {
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin: 15px 0;
+        }
+
+        .date-display {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <button class="theme-switcher" onclick="cycleTheme()">🎨</button>
+            <h1>✝️ Presencia Divina</h1>
+            <p class="header-subtitle">Tu encuentro diario con Dios</p>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent">
+            <!-- Home Section -->
+            <div class="section active" id="homeSection">
+                <p class="date-display" id="currentDate"></p>
+                
+                <button class="btn btn-emergency" onclick="showEmergencyVerse()">
+                    🚨 PALABRA DE EMERGENCIA
+                </button>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number" id="streakDays">0</span>
+                        <span class="stat-label">Días seguidos 🔥</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="totalRead">0</span>
+                        <span class="stat-label">Devocionales leídos</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">📖 Devocional de Hoy</h2>
+                    <h3 id="devTitle" style="margin-bottom: 15px; color: var(--primary);"></h3>
+                    <div class="verse-box">
+                        <p id="devVerse"></p>
+                        <p class="verse-ref" id="devRef"></p>
+                    </div>
+                    <p class="content-text" id="devContent"></p>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="markAsRead()">
+                            ✓ Marcar leído
+                        </button>
+                        <button class="btn btn-outline" onclick="toggleFavorite()">
+                            ❤️ Favorito
+                        </button>
+                        <button class="btn btn-outline" onclick="shareDevotional()">
+                            📤 Compartir
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">🎯 Categorías</h2>
+                    <div class="category-grid">
+                        <div class="category-btn" onclick="filterByCategory('fe')">💪 Fe</div>
+                        <div class="category-btn" onclick="filterByCategory('paz')">🕊️ Paz</div>
+                        <div class="category-btn" onclick="filterByCategory('amor')">❤️ Amor</div>
+                        <div class="category-btn" onclick="filterByCategory('esperanza')">🌟 Esperanza</div>
+                        <div class="category-btn" onclick="filterByCategory('perdon')">🙏 Perdón</div>
+                        <div class="category-btn" onclick="filterByCategory('gratitud')">🎁 Gratitud</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prayer Section -->
+            <div class="section" id="prayerSection">
+                <div class="card">
+                    <h2 class="card-title">🙏 Nueva Oración</h2>
+                    <div class="input-group">
+                        <label>Título</label>
+                        <input type="text" id="prayerTitle" placeholder="¿Por qué oras hoy?">
+                    </div>
+                    <div class="input-group">
+                        <label>Oración</label>
+                        <textarea id="prayerText" placeholder="Escribe tu oración aquí..."></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="savePrayer()" style="width: 100%;">
+                        💾 Guardar Oración
+                    </button>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">📜 Mis Oraciones</h2>
+                    <div id="prayerList"></div>
+                </div>
+            </div>
+
+            <!-- Challenges Section -->
+            <div class="section" id="challengesSection">
+                <div class="card">
+                    <h2 class="card-title">💪 Retos Espirituales</h2>
+                    <div class="challenge-card">
+                        <h3>🔥 Reto 21 Días de Fe</h3>
+                        <p style="color: var(--text-secondary); margin: 10px 0;">Fortalece tu fe día a día</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="challenge21Progress" style="width: 0%"></div>
+                        </div>
+                        <p style="text-align: center; margin-top: 8px;"><span id="challenge21Days">0</span>/21 días</p>
+                        <button class="btn btn-primary" onclick="completeChallenge(21)" style="width: 100%; margin-top: 10px;">
+                            ✓ Completar Día
+                        </button>
+                    </div>
+
+                    <div class="challenge-card">
+                        <h3>⭐ Reto 40 Días de Transformación</h3>
+                        <p style="color: var(--text-secondary); margin: 10px 0;">Un viaje de cambio profundo</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="challenge40Progress" style="width: 0%"></div>
+                        </div>
+                        <p style="text-align: center; margin-top: 8px;"><span id="challenge40Days">0</span>/40 días</p>
+                        <button class="btn btn-primary" onclick="completeChallenge(40)" style="width: 100%; margin-top: 10px;">
+                            ✓ Completar Día
+                        </button>
+                    </div>
+
+                    <div id="badges" style="margin-top: 20px;">
+                        <h3 style="margin-bottom: 10px;">🏆 Insignias Ganadas</h3>
+                        <div id="badgeList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div class="section" id="profileSection">
+                <div class="card">
+                    <h2 class="card-title">👤 Mi Perfil</h2>
+                    <div style="text-align: center; margin: 20px 0;">
+                        <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 3em;">
+                            ✝️
+                        </div>
+                        <h3 style="margin-top: 15px;">Usuario de Dios</h3>
+                        <p style="color: var(--text-secondary);">Miembro desde hoy</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">📊 Estadísticas Detalladas</h2>
+                    <div style="padding: 10px 0;">
+                        <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(147, 51, 234, 0.2);">
+                            <span>Días consecutivos</span>
+                            <strong id="profileStreak">0</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(147, 51, 234, 0.2);">
+                            <span>Total devocionales</span>
+                            <strong id="profileTotal">0</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(147, 51, 234, 0.2);">
+                            <span>Oraciones guardadas</span>
+                            <strong id="profilePrayers">0</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(147, 51, 234, 0.2);">
+                            <span>Retos completados</span>
+                            <strong id="profileChallenges">0</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 12px 0;">
+                            <span>Favoritos</span>
+                            <strong id="profileFavorites">0</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="card-title">⚙️ Configuración</h2>
+                    <button class="btn btn-outline" style="width: 100%; margin-bottom: 10px;" onclick="alert('Próximamente: Configurar recordatorios')">
+                        ⏰ Recordatorios
+                    </button>
+                    <button class="btn btn-outline" style="width: 100%; margin-bottom: 10px;" onclick="alert('Próximamente: Exportar datos')">
+                        📥 Exportar Datos
+                    </button>
+                    <button class="btn btn-outline" style="width: 100%;" onclick="alert('Próximamente: Más idiomas')">
+                        🌍 Idioma
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <button class="bottom-nav-btn active" onclick="switchSection('home')">
+                <span>🏠</span>
+                <span>Inicio</span>
+            </button>
+            <button class="bottom-nav-btn" onclick="switchSection('prayer')">
+                <span>🙏</span>
+                <span>Oración</span>
+            </button>
+            <button class="bottom-nav-btn" onclick="switchSection('challenges')">
+                <span>💪</span>
+                <span>Retos</span>
+            </button>
+            <button class="bottom-nav-btn" onclick="switchSection('profile')">
+                <span>👤</span>
+                <span>Perfil</span>
+            </button>
+        </div>
+
+        <!-- Emergency Modal -->
+        <div class="modal" id="emergencyModal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeModal('emergencyModal')">&times;</span>
+                <h2 style="color: var(--primary); margin-bottom: 20px;">🚨 Palabra de Emergencia</h2>
+                <div class="verse-box">
+                    <p id="emergencyVerse"></p>
+                    <p class="verse-ref" id="emergencyRef"></p>
+                </div>
+                <p class="content-text" id="emergencyMessage"></p>
+                <button class="btn btn-primary" onclick="closeModal('emergencyModal')" style="width: 100%; margin-top: 20px;">
+                    Amén 🙏
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Database simulada
+        let appData = {
+            currentDevotional: 0,
+            streak: 0,
+            totalRead: 0,
+            favorites: [],
+            prayers: [],
+            challenge21: 0,
+            challenge40: 0,
+            badges: [],
+            theme: 'light',
+            lastReadDate: null
+        };
+
+        const devotionals = [
+            {
+                title: "Fe que Mueve Montañas",
+                verse: "Porque de cierto os digo que si tuviereis fe como un grano de mostaza, diréis a este monte: Pásate de aquí allá, y se pasará; y nada os será imposible.",
+                reference: "Mateo 17:20",
+                content: "La fe no se mide por su tamaño, sino por su autenticidad. Un grano de mostaza es una de las semillas más pequeñas, pero Jesús lo usa como ejemplo del poder de la fe genuina. Hoy, no importa cuán grande sea tu problema o cuán pequeña sientas tu fe. Lo que importa es que deposites esa fe, por pequeña que sea, en un Dios infinitamente grande.",
+                category: "fe"
+            },
+            {
+                title: "Paz en Medio de la Tormenta",
+                verse: "Por nada estéis afanosos, sino sean conocidas vuestras peticiones delante de Dios en toda oración y ruego, con acción de gracias.",
+                reference: "Filipenses 4:6-7",
+                content: "En un mundo lleno de incertidumbre y preocupaciones, Dios nos invita a un estilo de vida diferente: una vida sin afanes. Esto no significa ignorar los problemas, sino llevarlos a Dios en oración. Cuando entregas tus cargas a Él con un corazón agradecido, experimentas una paz sobrenatural.",
+                category: "paz"
+            },
+            {
+                title: "Amor Incondicional",
+                verse: "Nosotros le amamos a él, porque él nos amó primero.",
+                reference: "1 Juan 4:19",
+                content: "El amor de Dios no depende de nuestros méritos o perfección. Él nos amó primero, cuando aún éramos pecadores, cuando no lo conocíamos, cuando estábamos perdidos. Este amor incondicional es la base de nuestra relación con Él y el modelo para nuestras relaciones con otros.",
+                category: "amor"
+            },
+            {
+                title: "Esperanza que No Defrauda",
+                verse: "Y el Dios de esperanza os llene de todo gozo y paz en el creer, para que abundéis en esperanza por el poder del Espíritu Santo.",
+                reference: "Romanos 15:13",
+                content: "La esperanza cristiana no es un simple optimismo o pensamiento positivo. Es una confianza firme en las promesas de Dios y en su carácter inmutable. Esta esperanza produce gozo incluso en medio de las circunstancias difíciles.",
+                category: "esperanza"
+            },
+            {
+                title: "Perdonar Como Fuimos Perdonados",
+                verse: "Soportándoos unos a otros, y perdonándoos unos a otros si alguno tuviere queja contra otro. De la manera que Cristo os perdonó, así también hacedlo vosotros.",
+                reference: "Colosenses 3:13",
+                content: "El perdón es uno de los actos más difíciles pero más liberadores que podemos realizar. Dios nos llama a perdonar no porque la ofensa no importa, sino porque Él nos perdonó primero cuando no lo merecíamos.",
+                category: "perdon"
+            },
+            {
+                title: "Gratitud Transformadora",
+                verse: "Dad gracias en todo, porque esta es la voluntad de Dios para con vosotros en Cristo Jesús.",
+                reference: "1 Tesalonicenses 5:18",
+                content: "La gratitud no es solo una emoción, es una decisión. Agradecer en todo no significa agradecer por todo, sino mantener un corazón agradecido incluso en medio de las dificultades. La gratitud transforma nuestra perspectiva y nos conecta con la bondad constante de Dios.",
+                category: "gratitud"
+            }
+        ];
+
+        const emergencyVerses = [
+            {
+                situation: "ansiedad",
+                verse: "Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.",
+                reference: "1 Pedro 5:7",
+                message: "Dios sabe exactamente lo que estás sintiendo ahora. Respira profundo. Él tiene el control y te cuida con amor perfecto. No estás solo."
+            },
+            {
+                situation: "miedo",
+                verse: "Porque no nos ha dado Dios espíritu de cobardía, sino de poder, de amor y de dominio propio.",
+                reference: "2 Timoteo 1:7",
+                message: "El miedo no viene de Dios. Él te ha dado poder para enfrentar lo que sea. Su amor perfecto echa fuera el temor. Confía en Él."
+            },
+            {
+                situation: "tristeza",
+                verse: "Cercano está Jehová a los quebrantados de corazón; y salva a los contritos de espíritu.",
+                reference: "Salmos 34:18",
+                message: "Dios está más cerca de ti ahora que nunca. Está bien llorar, está bien sentir. Él está contigo en tu dolor y te sostendrá."
+            },
+            {
+                situation: "soledad",
+                verse: "No te desampararé, ni te dejaré.",
+                reference: "Hebreos 13:5",
+                message: "Aunque te sientas solo, nunca lo estás. Dios prometió nunca dejarte. Él está contigo en este momento, ahora mismo."
+            },
+            {
+                situation: "duda",
+                verse: "Confía en Jehová de todo tu corazón, y no te apoyes en tu propia prudencia.",
+                reference: "Proverbios 3:5",
+                message: "Está bien no tener todas las respuestas. Dios conoce el camino completo. Confía en Él paso a paso."
+            }
+        ];
+
+        // Cargar datos
+        function loadData() {
+            const saved = localStorage.getItem('presenciaDivinaData');
+            if (saved) {
+                appData = JSON.parse(saved);
+            }
+            updateUI();
+        }
+
+        // Guardar datos
+        function saveData() {
+            localStorage.setItem('presenciaDivinaData', JSON.stringify(appData));
+        }
+
+        // Actualizar UI
+        function updateUI() {
+            // Fecha actual
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('currentDate').textContent = today.toLocaleDateString('es-ES', options);
+
+            // Estadísticas
+            document.getElementById('streakDays').textContent = appData.streak;
+            document.getElementById('totalRead').textContent = appData.totalRead;
+            
+            // Profile stats
+            document.getElementById('profileStreak').textContent = appData.streak;
+            document.getElementById('profileTotal').textContent = appData.totalRead;
+            document.getElementById('profilePrayers').textContent = appData.prayers.length;
+            document.getElementById('profileFavorites').textContent = appData.favorites.length;
+            
+            // Devocional actual
+            loadDevotional(appData.currentDevotional);
+            
+            // Lista de oraciones
+            renderPrayers();
+            
+            // Retos
+            updateChallenges();
+            
+            // Insignias
+            updateBadges();
+        }
+
+        // Cargar devocional
+        function loadDevotional(index) {
+            const dev = devotionals[index];
+            document.getElementById('devTitle').textContent = dev.title;
+            document.getElementById('devVerse').textContent = dev.verse;
+            document.getElementById('devRef').textContent = dev.reference;
+            document.getElementById('devContent').textContent = dev.content;
+        }
+
+        // Marcar como leído
+        function markAsRead() {
+            const today = new Date().toDateString();
+            
+            if (appData.lastReadDate !== today) {
+                appData.totalRead++;
+                appData.streak++;
+                appData.lastReadDate = today;
+                
+                // Celebración
+                const btn = event.target;
+                btn.classList.add('celebration');
+                btn.textContent = '✓ ¡Completado! 🎉';
+                
+                setTimeout(() => {
+                    btn.classList.remove('celebration');
+                    btn.textContent = '✓ Marcar leído';
+                }, 2000);
+                
+                // Siguiente devocional
+                appData.currentDevotional = (appData.currentDevotional + 1) % devotionals.length;
+                
+                checkBadges();
+                saveData();
+                updateUI();
+            } else {
+                alert('Ya completaste el devocional de hoy. ¡Vuelve mañana! 🌟');
+            }
+        }
+
+        // Toggle favorito
+        function toggleFavorite() {
+            const current = appData.currentDevotional;
+            const index = appData.favorites.indexOf(current);
+            
+            if (index > -1) {
+                appData.favorites.splice(index, 1);
+                alert('Removido de favoritos');
+            } else {
+                appData.favorites.push(current);
+                alert('¡Agregado a favoritos! ❤️');
+            }
+            
+            saveData();
+            updateUI();
+        }
+
+        // Compartir
+        function shareDevotional() {
+            const dev = devotionals[appData.currentDevotional];
+            const text = `${dev.title}\n\n"${dev.verse}"\n${dev.reference}\n\n¡Descarga Presencia Divina!`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Presencia Divina',
+                    text: text
+                });
+            } else {
+                navigator.clipboard.writeText(text);
+                alert('¡Texto copiado! Pégalo donde quieras compartirlo 📤');
+            }
+        }
+
+        // Filtrar por categoría
+        function filterByCategory(category) {
+            const filtered = devotionals.findIndex(d => d.category === category);
+            if (filtered !== -1) {
+                appData.currentDevotional = filtered;
+                loadDevotional(filtered);
+                alert(`Devocional sobre ${category} cargado`);
+            }
+        }
+
+        // Guardar oración
+        function savePrayer() {
+            const title = document.getElementById('prayerTitle').value;
+            const text = document.getElementById('prayerText').value;
+            
+            if (!title || !text) {
+                alert('Por favor completa todos los campos');
+                return;
+            }
+            
+            const prayer = {
+                id: Date.now(),
+                title: title,
+                text: text,
+                date: new Date().toLocaleDateString('es-ES'),
+                answered: false
+            };
+            
+            appData.prayers.unshift(prayer);
+            document.getElementById('prayerTitle').value = '';
+            document.getElementById('prayerText').value = '';
+            
+            saveData();
+            renderPrayers();
+            alert('¡Oración guardada! 🙏');
+        }
+
+        // Renderizar oraciones
+        function renderPrayers() {
+            const container = document.getElementById('prayerList');
+            
+            if (appData.prayers.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 20px;">No hay oraciones guardadas aún</p>';
+                return;
+            }
+            
+            container.innerHTML = appData.prayers.map(prayer => `
+                <div class="prayer-item ${prayer.answered ? 'answered' : ''}">
+                    <div class="prayer-header">
+                        <strong>${prayer.title}</strong>
+                        <span class="prayer-date">${prayer.date}</span>
+                    </div>
+                    <p style="color: var(--text-secondary); margin: 8px 0;">${prayer.text}</p>
+                    <div style="display: flex; gap: 8px; margin-top: 10px;">
+                        ${!prayer.answered ? `
+                            <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.85em;" onclick="markAnswered(${prayer.id})">
+                                ✓ Respondida
+                            </button>
+                        ` : `
+                            <span class="badge badge-gold">✓ Dios respondió</span>
+                        `}
+                        <button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85em;" onclick="deletePrayer(${prayer.id})">
+                            🗑️ Eliminar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Marcar oración como respondida
+        function markAnswered(id) {
+            const prayer = appData.prayers.find(p => p.id === id);
+            if (prayer) {
+                prayer.answered = true;
+                saveData();
+                renderPrayers();
+                alert('¡Gloria a Dios! 🙌');
+            }
+        }
+
+        // Eliminar oración
+        function deletePrayer(id) {
+            if (confirm('¿Seguro que quieres eliminar esta oración?')) {
+                appData.prayers = appData.prayers.filter(p => p.id !== id);
+                saveData();
+                renderPrayers();
+            }
+        }
+
+        // Completar reto
+        function completeChallenge(days) {
+            const key = `challenge${days}`;
+            
+            if (appData[key] < days) {
+                appData[key]++;
+                
+                if (appData[key] === days) {
+                    alert(`🎉 ¡FELICIDADES! Completaste el reto de ${days} días. ¡Eres un guerrero de la fe!`);
+                    if (!appData.badges.includes(`reto_${days}`)) {
+                        appData.badges.push(`reto_${days}`);
+                    }
+                } else {
+                    alert(`¡Día ${appData[key]} completado! 💪`);
+                }
+                
+                saveData();
+                updateChallenges();
+                updateBadges();
+            } else {
+                alert('¡Ya completaste este reto! 🏆');
+            }
+        }
+
+        // Actualizar retos
+        function updateChallenges() {
+            const progress21 = (appData.challenge21 / 21) * 100;
+            const progress40 = (appData.challenge40 / 40) * 100;
+            
+            document.getElementById('challenge21Progress').style.width = progress21 + '%';
+            document.getElementById('challenge21Days').textContent = appData.challenge21;
+            
+            document.getElementById('challenge40Progress').style.width = progress40 + '%';
+            document.getElementById('challenge40Days').textContent = appData.challenge40;
+            
+            document.getElementById('profileChallenges').textContent = 
+                (appData.challenge21 === 21 ? 1 : 0) + (appData.challenge40 === 40 ? 1 : 0);
+        }
+
+        // Verificar insignias
+        function checkBadges() {
+            if (appData.streak >= 7 && !appData.badges.includes('semana')) {
+                appData.badges.push('semana');
+                alert('🏅 ¡Nueva insignia desbloqueada: 7 días consecutivos!');
+            }
+            if (appData.streak >= 30 && !appData.badges.includes('mes')) {
+                appData.badges.push('mes');
+                alert('🏆 ¡Nueva insignia desbloqueada: 30 días consecutivos!');
+            }
+            if (appData.totalRead >= 50 && !appData.badges.includes('lector')) {
+                appData.badges.push('lector');
+                alert('📚 ¡Nueva insignia desbloqueada: 50 devocionales leídos!');
+            }
+        }
+
+        // Actualizar insignias
+        function updateBadges() {
+            const container = document.getElementById('badgeList');
+            const badges = {
+                'semana': '🏅 7 Días Consecutivos',
+                'mes': '🏆 30 Días Consecutivos',
+                'lector': '📚 50 Devocionales',
+                'reto_21': '🔥 Reto 21 Días',
+                'reto_40': '⭐ Reto 40 Días'
+            };
+            
+            if (appData.badges.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Completa retos para ganar insignias</p>';
+                return;
+            }
+            
+            container.innerHTML = appData.badges.map(badge => 
+                `<span class="badge badge-gold" style="margin: 5px; display: inline-block;">${badges[badge]}</span>`
+            ).join('');
+        }
+
+        // Palabra de emergencia
+        function showEmergencyVerse() {
+            const random = emergencyVerses[Math.floor(Math.random() * emergencyVerses.length)];
+            
+            document.getElementById('emergencyVerse').textContent = random.verse;
+            document.getElementById('emergencyRef').textContent = random.reference;
+            document.getElementById('emergencyMessage').textContent = random.message;
+            
+            document.getElementById('emergencyModal').classList.add('active');
+        }
+
+        // Cerrar modal
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // Cambiar sección
+        function switchSection(section) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.bottom-nav-btn').forEach(b => b.classList.remove('active'));
+            
+            // Mostrar sección seleccionada
+            const sectionMap = {
+                'home': 'homeSection',
+                'prayer': 'prayerSection',
+                'challenges': 'challengesSection',
+                'profile': 'profileSection'
+            };
+            
+            document.getElementById(sectionMap[section]).classList.add('active');
+            event.target.closest('.bottom-nav-btn').classList.add('active');
+        }
+
+        // Cambiar tema
+        function cycleTheme() {
+            const themes = ['light', 'dark', 'sepia'];
+            const currentIndex = themes.indexOf(appData.theme);
+            const nextIndex = (currentIndex + 1) % themes.length;
+            appData.theme = themes[nextIndex];
+            
+            document.documentElement.setAttribute('data-theme', appData.theme);
+            saveData();
+        }
+
+        // Inicializar
+        window.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            
+            // Aplicar tema guardado
+            if (appData.theme) {
+                document.documentElement.setAttribute('data-theme', appData.theme);
+            }
+        });
+
+        // Cerrar modal al hacer clic fuera
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
